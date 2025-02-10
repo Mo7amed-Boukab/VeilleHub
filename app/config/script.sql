@@ -33,3 +33,6 @@ CREATE TABLE presentations (
 );
 
 
+use veillehub;
+select topics.*, users.username as student_name from topics JOIN users ON topics.student_id = users.id;
+SELECT * FROM topics WHERE id = 1;

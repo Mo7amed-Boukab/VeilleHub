@@ -15,8 +15,6 @@ require_once '../app/config/db.php';
 $router = new Router();
 Route::setRouter($router);
 
-
-// Define routes
 // auth routes 
 Route::get('/register', [AuthController::class, 'showRegister']);
 Route::post('/register', [AuthController::class, 'handleRegister']);
@@ -26,14 +24,21 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 // enseignant routers
 
+Route::get('/home',[HomeController::class, 'showHomePage']);
 Route::get('/dashboard', [TeacherController::class, 'showDashboard']);
+
 Route::get('/dashboard/student', [StudentController::class, 'showDashboard']);
 Route::get('/accounts', [TeacherController::class, 'allAccountStudentsAction']);
 Route::get('/dashboard/valideAccount/{id}', [TeacherController::class, 'valideAccountAction']);
+Route::get('/dashboard/valideTopic/{id}', [TeacherController::class, 'valideTopicAction']);
+Route::get('/dashboard/regeterTopic/{id}', [TeacherController::class, 'regeterTopicAction']);
+Route::get('/dashboard/supprimer-topic/{id}', [TeacherController::class, 'deleteTopicAction']);
+Route::get('/dashboard/student/supprimer-topic/{id}', [StudentController::class, 'deleteTopicAction']);
 Route::get('/dashboard/regeterAccount/{id}', [TeacherController::class, 'regeterAccountAction']);
-// Route::get('/teacher/users', [AdminController::class, 'handleUsers']);
-
-Route::get('/home',[HomeController::class, 'showHomePage']);
+Route::post('/dashboard/student/addtopic/{id}', [StudentController::class, 'addTopicAction']);
+// Route::get('/dashboard/student/edit-topic/{id}', [StudentController::class, 'editTopicAction']);
+// Route::post('/dashboard/student/edit-topic/{id}', [StudentController::class, 'editTopicAction']);
+// Route::get('/dashboard/assignPresentation{Id}', [TeacherController::class, 'assignTopic']);
 
 
 // Dispatch the request
